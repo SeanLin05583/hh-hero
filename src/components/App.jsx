@@ -6,6 +6,8 @@ import {
   Switch,
 } from "react-router-dom";
 import { HeroList, HeroProfile } from 'components/common';
+import './normalize.css';
+import './style.css';
 
 const App = () => {
   return (

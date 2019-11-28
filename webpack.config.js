@@ -36,10 +36,12 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              localIdentName: '[name]-[hash:base64:8]-[local]',
+              modules: {
+                localIdentName: '[name]-[hash:base64:8]-[local]',
+              },
             },
           },
+          { loader: 'postcss-loader' },
         ],
       },
     ],

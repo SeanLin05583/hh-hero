@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  font-family: monospace, Microsoft JhengHei;
+  min-width: 320px;
+  font-size: 14px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
