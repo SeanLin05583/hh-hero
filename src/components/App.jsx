@@ -15,7 +15,7 @@ const App = () => {
       <Switch>
         <Route path="/heroes">
           <HeroList />
-          <Route path="/heroes/profile">
+          <Route path="/heroes/:heroId">
             <HeroProfile />
           </Route>
         </Route>
