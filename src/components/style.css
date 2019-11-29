@@ -5,11 +5,16 @@ body {
   font-size: 14px;
 }
 
-p {
+p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.app-container {
+  width: 900px;
+  margin: 0 auto;
 }

@@ -5,22 +5,22 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-import { HeroList, HeroProfile } from 'components/common';
+import { HeroPage } from 'components/pages';
 import './normalize.css';
-import './style.css';
+import classnames from 'classnames/bind';
+import style from './style.css';
+
+const cx = classnames.bind(style);
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route path="/heroes">
-          <HeroList />
-          <Route path="/heroes/:heroId">
-            <HeroProfile />
-          </Route>
-        </Route>
-        <Redirect from="*" to="/heroes" />
-      </Switch>
+      <div className={cx('app-container')}>
+        <Switch>
+          <Route path="/heroes" component={HeroPage} />
+          <Redirect from="*" to="/heroes" />
+        </Switch>
+      </div>
     </Router>
   );
 }

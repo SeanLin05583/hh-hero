@@ -1,0 +1,58 @@
+.hero-list-container {
+  padding: 60px 0;
+}
+
+.hero-list-title {
+  font-size: 36px;
+  text-align: center;
+}
+
+.hero-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 20px 10px;
+}
+
+.hero-card-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  color: #282828;
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px #CCCCCC;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    .hero-card-img {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.hero-card-img-container {
+  width: 200px;
+  height: 200px;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+
+.hero-card-img {
+  pointer-events: none;
+  transition: all .3s;
+}
+
+.hero-card-name {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 0 0 3px 3px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: all .2s;
+
+  &.is-hero-selected {
+    border-bottom-color: #FA8B00;
+  }
+}
