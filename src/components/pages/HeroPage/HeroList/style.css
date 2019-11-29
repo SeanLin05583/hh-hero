@@ -3,8 +3,31 @@
 }
 
 .hero-list-title {
+  position: relative;
   font-size: 36px;
   text-align: center;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    width: 60px;
+    height: 5px;
+    background-color: #00BEA4;
+    transform: translateX(-50%);
+    transition: all .2s;
+    animation: grow .4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@keyframes grow {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 60px;
+  }
 }
 
 .hero-list {
