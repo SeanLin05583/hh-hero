@@ -9,3 +9,4 @@ const request = () => {
 
 export const apiGetHeroList = () => request().get('/heroes');
 export const apiGetHeroProfile = (heroId) => request().get(`/heroes/${heroId}/profile`);
+export const apiPatchHeroProfile = (heroId, heroProfile) => request().patch(`/heroes/${heroId}/profile`, heroProfile);

@@ -6,12 +6,13 @@ const cx = classnames.bind(style);
 
 const NumberEditor = memo(({
   disabledAdd,
+  disabledMinus,
   onChange,
   point,
 }) => {
   return (
     <div className={cx('number-editor-container')}>
-      <button className={cx('number-editor-button')} onClick={onChange(point - 1)} disabled={point === 0}>
+      <button className={cx('number-editor-button')} onClick={onChange(point - 1)} disabled={disabledMinus}>
         <i className="fas fa-minus" />
       </button>
       <span className={cx('number-editor-point')}>{point}</span>

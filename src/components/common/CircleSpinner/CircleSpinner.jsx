@@ -4,8 +4,8 @@ import style from './style.css';
 
 const cx = classNames.bind(style);
 
-const CircleSpinner = () => {
-  return <span className={cx('circle-spinner')} />;
+const CircleSpinner = ({ color }) => {
+  return <span className={cx('circle-spinner', color)} />;
 };
 
 export default CircleSpinner;

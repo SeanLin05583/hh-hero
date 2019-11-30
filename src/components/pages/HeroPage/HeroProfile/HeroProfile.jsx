@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Redirect, useParams } from "react-router-dom";
 import { CircleSpinner } from 'components/common';
-import { apiGetHeroProfile } from 'api';
+import { apiGetHeroProfile, apiPatchHeroProfile } from 'api';
 import HeroProfileEditor from './HeroProfileEditor';
 import classnames from 'classnames/bind';
 import style from './style.css';
@@ -18,6 +18,7 @@ const initialHeroProfile = {
 const HeroProfile = memo(({ heroList, setHeroId }) => {
   const { heroId } = useParams();
   const [isHeroProfileLoading, setIsHeroProfileLoading] = useState(true);
+  const [isHeroProfilePatching, setIsHeroProfilePatching] = useState(false);
   const [heroProfile, setHeroProfile] = useState(initialHeroProfile);
   const targetHero = heroList.find(hero => hero.id === heroId);
 
@@ -34,19 +35,30 @@ const HeroProfile = memo(({ heroList, setHeroId }) => {
     }
   }, [heroList, heroId]);
 
+
+  const handleProfileSave = (heroId) => (heroProfile) => async () => {
+    setIsHeroProfilePatching(true);
+    await apiPatchHeroProfile(heroId, heroProfile);
+    setIsHeroProfilePatching(false);
+  }
+
   if (!targetHero) {
     return <Redirect to="/heroes" />
   }
 
   return (
-    <div className={cx('hero-profilie-container')}>
+    <div className={cx('hero-profile-container')}>
       {isHeroProfileLoading && <CircleSpinner />}
       {!isHeroProfileLoading &&
         <>
           <h2 className={cx('hero-profile-title')}>
             {`Hello ${targetHero.name}`}
           </h2>
-          <HeroProfileEditor data={heroProfile} />
+          <HeroProfileEditor
+            data={heroProfile}
+            onHeroSave={handleProfileSave(heroId)}
+            isPatching={isHeroProfilePatching}
+          />
         </>
       }
     </div>
