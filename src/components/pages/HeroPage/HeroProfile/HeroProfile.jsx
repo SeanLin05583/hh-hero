@@ -46,7 +46,7 @@ const HeroProfile = memo(({ heroList, setHeroId }) => {
           <h2 className={cx('hero-profile-title')}>
             {`Hello ${targetHero.name}`}
           </h2>
-          <HeroProfileEditor heroProfile={heroProfile} />
+          <HeroProfileEditor data={heroProfile} />
         </>
       }
     </div>

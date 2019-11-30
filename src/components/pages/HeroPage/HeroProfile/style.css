@@ -6,10 +6,52 @@
 
 .hero-profile-title {
   composes: hero-list-title from '../HeroList/style.css';
-  
+
   font-size: 30px;
 }
 
 .hero-profile-editor-container {
-  margin-top: 20px;
+  display: flex;
+  margin-top: 25px;
+}
+
+.hero-profile-attr-container {
+}
+
+.hero-profile-attr {
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.hero-profile-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: 140px;
+}
+
+.hero-profile-point-remain {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.hero-profile-save-button {
+  color: #FFFFFF;
+  background-color: #FA8B00;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+  padding: 10px 30px;
+  min-width: 120px;
+  cursor: pointer;
+  transition: background-color .2s;
+
+  &:enabled:hover {
+    background-color: #F06C00;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #CCCCCC;
+  }
 }
