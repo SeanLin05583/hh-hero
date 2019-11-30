@@ -1,0 +1,16 @@
+.circle-spinner {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  margin: auto;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.16);
+  border-top-color: #CCCCCC;
+  animation: spinner .5s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
