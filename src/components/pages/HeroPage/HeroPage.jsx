@@ -11,6 +11,7 @@ const cx = classNames.bind(style);
 
 const HeroPage = () => {
   const [heroList, setHeroList] = useState([]);
+  const [selectHeroId, setSelectHeroId] = useState(null);
   const [isFetchingHeroList, setIsFetchingHeroList] = useState(true);
 
   useEffect(() => {
@@ -23,6 +24,11 @@ const HeroPage = () => {
     fetchHeroList();
   }, []);
 
+
+  const handleHeroSelect = (heroId) => () => {
+    setSelectHeroId(heroId);
+  }
+
   return (
     <>
       {isFetchingHeroList && (
@@ -31,9 +37,11 @@ const HeroPage = () => {
         </div>
       )}
       {!isFetchingHeroList && <>
-        <HeroList heroList={heroList} />
+        <HeroList heroList={heroList} selectHeroId={selectHeroId} onHeroSelect={handleHeroSelect} />
         <Route path="/heroes/:heroId">
-          <HeroProfile />
+          {heroList.length > 0 &&
+            <HeroProfile heroList={heroList} setHeroId={setSelectHeroId} />
+          }
         </Route>
       </>}
     </>

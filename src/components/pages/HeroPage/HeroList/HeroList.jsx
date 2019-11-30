@@ -5,13 +5,7 @@ import style from './style.css';
 
 const cx = classnames.bind(style);
 
-const HeroList = memo(({ heroList }) => {
-  const [selectHeroId, setSelectHeroId] = useState(null);
-
-  const handleHeroSelect = (heroId) => () => {
-    setSelectHeroId(heroId);
-  }
-
+const HeroList = memo(({ heroList, selectHeroId, onHeroSelect }) => {
   return (
     <div className={cx('hero-list-container')}>
       <h1 className={cx('hero-list-title')}>Choose your hahow Hero!</h1>
@@ -21,7 +15,7 @@ const HeroList = memo(({ heroList }) => {
             key={hero.id}
             heroData={hero}
             isHeroSelected={selectHeroId === hero.id}
-            onClick={handleHeroSelect(hero.id)}
+            onClick={onHeroSelect(hero.id)}
           />)}
       </div>
     </div>

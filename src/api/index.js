@@ -8,3 +8,4 @@ const request = () => {
 }
 
 export const apiGetHeroList = () => request().get('/heroes');
+export const apiGetHeroProfile = (heroId) => request().get(`/heroes/${heroId}/profile`);

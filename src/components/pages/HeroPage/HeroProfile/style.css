@@ -1,0 +1,15 @@
+.hero-profilie-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-profile-title {
+  composes: hero-list-title from '../HeroList/style.css';
+  
+  font-size: 30px;
+}
+
+.hero-profile-editor-container {
+  margin-top: 20px;
+}
