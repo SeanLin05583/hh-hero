@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from "react-router-dom";
+import { useStateValue } from 'state';
 import HeroList from './HeroList';
 import HeroProfile from './HeroProfile';
 import { CircleSpinner } from 'components/common';
@@ -10,40 +11,33 @@ import style from './style.css';
 const cx = classNames.bind(style);
 
 const HeroPage = () => {
-  const [heroList, setHeroList] = useState([]);
-  const [selectHeroId, setSelectHeroId] = useState(null);
+  const [{ heroList }, dispatch] = useStateValue();
   const [isFetchingHeroList, setIsFetchingHeroList] = useState(true);
 
   useEffect(() => {
     const fetchHeroList = async () => {
       const { data: responseHeroList } = await apiGetHeroList();
       setIsFetchingHeroList(false);
-      setHeroList(responseHeroList);
+      dispatch({ type: 'SET_HERO_LIST', heroList: responseHeroList });
     }
 
     fetchHeroList();
   }, []);
 
-
-  const handleHeroSelect = (heroId) => () => {
-    setSelectHeroId(heroId);
-  }
-
   return (
     <>
-      {isFetchingHeroList && (
+      {(isFetchingHeroList || heroList.length === 0) && (
         <div className={cx('circle-spinner-container')}>
           <CircleSpinner />
         </div>
       )}
-      {!isFetchingHeroList && <>
-        <HeroList heroList={heroList} selectHeroId={selectHeroId} onHeroSelect={handleHeroSelect} />
-        <Route path="/heroes/:heroId">
-          {heroList.length > 0 &&
-            <HeroProfile heroList={heroList} setHeroId={setSelectHeroId} />
-          }
-        </Route>
-      </>}
+      {!isFetchingHeroList && heroList.length > 0 &&
+        <>
+          <HeroList heroList={heroList} />
+          <Route path="/heroes/:heroId">
+            <HeroProfile />
+          </Route>
+        </>}
     </>
   );
 }

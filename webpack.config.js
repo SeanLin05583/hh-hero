@@ -14,6 +14,7 @@ module.exports = {
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
       api: path.resolve(__dirname, 'src/api/'),
+      state: path.resolve(__dirname, 'src/state/'),
     },
     extensions: ['.js', '.jsx'],
   },
