@@ -1,14 +1,16 @@
 import React, { memo, useState } from 'react';
 import { useStateValue } from 'state';
 import { CircleSpinner, NumberEditor } from 'components/common';
+import { apiPatchHeroProfile } from 'api';
 import classnames from 'classnames/bind';
 import style from './style.css';
 
 const cx = classnames.bind(style);
 
-const HeroProfileEditor = memo(({ onHeroSave, isPatching }) => {
+const HeroProfileEditor = memo(({ heroId }) => {
   const [{ heroProfile }, dispatch] = useStateValue();
   const [pointLeft, setPointLeft] = useState(0);
+  const [isHeroProfilePatching, setIsHeroProfilePatching] = useState(false);
 
   const handleProfileChange = (heroAttr) => (newValue) => () => {
     const oldValue = heroProfile[heroAttr];
@@ -23,6 +25,12 @@ const HeroProfileEditor = memo(({ onHeroSave, isPatching }) => {
     dispatch({ type: 'SET_HERO_PROFILE', heroProfile: newProfile });
   }
 
+  const handleProfileSave = async () => {
+    setIsHeroProfilePatching(true);
+    await apiPatchHeroProfile(heroId, heroProfile);
+    setIsHeroProfilePatching(false);
+  };
+
   return (
     <div className={cx('hero-profile-editor-container')}>
       <div>
@@ -31,8 +39,8 @@ const HeroProfileEditor = memo(({ onHeroSave, isPatching }) => {
             {`${heroAttr.toUpperCase()}：`}
             <NumberEditor
               point={heroProfile[heroAttr]}
-              disabledAdd={pointLeft === 0 || isPatching}
-              disabledMinus={heroProfile[heroAttr] === 0 || isPatching}
+              disabledAdd={pointLeft === 0 || isHeroProfilePatching}
+              disabledMinus={heroProfile[heroAttr] === 0 || isHeroProfilePatching}
               onChange={handleProfileChange(heroAttr)}
             />
           </div>
@@ -42,10 +50,10 @@ const HeroProfileEditor = memo(({ onHeroSave, isPatching }) => {
         <p className={cx('hero-profile-point-remain')}>{`剩餘點數: ${pointLeft}`}</p>
         <button
           className={cx('hero-profile-save-button')}
-          disabled={pointLeft > 0 || isPatching}
-          onClick={onHeroSave}
+          disabled={pointLeft > 0 || isHeroProfilePatching}
+          onClick={handleProfileSave}
         >
-          {isPatching ? <CircleSpinner color="white" /> : '儲存'}
+          {isHeroProfilePatching ? <CircleSpinner color="white" /> : '儲存'}
         </button>
       </div>
     </div>

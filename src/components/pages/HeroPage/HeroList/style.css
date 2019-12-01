@@ -19,6 +19,16 @@
     transition: all .2s;
     animation: grow .4s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  @mixin isMobile {
+    font-size: 28px;
+    padding: 0 15px;
+
+    &:after {
+      width: 55px;
+      height: 4px;
+    }
+  }
 }
 
 @keyframes grow {
@@ -60,9 +70,15 @@
   height: 200px;
   border-radius: 3px 3px 0 0;
   overflow: hidden;
+
+  @mixin isMobile {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .hero-card-img {
+  width: 100%;
   pointer-events: none;
   transition: all .3s;
 }

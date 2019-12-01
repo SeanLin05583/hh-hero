@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect } from 'react';
 import { Redirect, useParams } from "react-router-dom";
 import { useStateValue } from 'state';
 import { CircleSpinner } from 'components/common';
-import { apiGetHeroProfile, apiPatchHeroProfile } from 'api';
+import { apiGetHeroProfile } from 'api';
 import HeroProfileEditor from './HeroProfileEditor';
 import classnames from 'classnames/bind';
 import style from './style.css';
@@ -12,8 +12,7 @@ const cx = classnames.bind(style);
 const HeroProfile = memo(() => {
   const { heroId } = useParams();
   const [isHeroProfileLoading, setIsHeroProfileLoading] = useState(true);
-  const [isHeroProfilePatching, setIsHeroProfilePatching] = useState(false);
-  const [{ heroList, heroProfile }, dispatch] = useStateValue();
+  const [{ heroList }, dispatch] = useStateValue();
   const targetHero = heroList.find(hero => hero.id === heroId);
 
   useEffect(() => {
@@ -29,12 +28,6 @@ const HeroProfile = memo(() => {
     }
   }, [heroId]);
 
-  const handleProfileSave = (heroId) => async () => {
-    setIsHeroProfilePatching(true);
-    await apiPatchHeroProfile(heroId, heroProfile);
-    setIsHeroProfilePatching(false);
-  };
-
   if (!targetHero) {
     return <Redirect to="/heroes" />
   }
@@ -47,10 +40,7 @@ const HeroProfile = memo(() => {
           <h2 className={cx('hero-profile-title')}>
             {`Hello ${targetHero.name}`}
           </h2>
-          <HeroProfileEditor
-            onHeroSave={handleProfileSave(heroId)}
-            isPatching={isHeroProfilePatching}
-          />
+          <HeroProfileEditor heroId={heroId} />
         </>
       }
     </div>

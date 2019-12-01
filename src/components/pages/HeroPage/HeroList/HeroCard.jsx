@@ -11,6 +11,10 @@ const HeroCard = memo(({ heroData }) => {
   const isHeroSelected = selectedHeroId === heroData.id;
 
   const setHeroId = (heroId) => () => {
+    if (window.innerWidth < 768) {
+      window.scrollTo(0, 0);
+    }
+
     dispatch({ type: 'SET_HERO_ID', heroId });
   };
 

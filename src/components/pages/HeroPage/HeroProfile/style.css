@@ -10,16 +10,28 @@
   composes: hero-list-title from '../HeroList/style.css';
 
   font-size: 30px;
+
+  @mixin isMobile {
+    font-size: 24px;
+  }
 }
 
 .hero-profile-editor-container {
   display: flex;
   margin-top: 25px;
+
+  @mixin isMobile {
+    flex-direction: column;
+  }
 }
 
 .hero-profile-attr {
   font-size: 20px;
   margin-top: 15px;
+
+  @mixin isMobile {
+    font-size: 18px;
+  }
 }
 
 .hero-profile-button-container {
@@ -27,11 +39,17 @@
   flex-direction: column;
   justify-content: flex-end;
   margin-left: 140px;
+
+  @mixin isMobile {
+    margin-left: 0;
+    margin-top: 25px;
+  }
 }
 
 .hero-profile-point-remain {
   font-size: 18px;
   margin-bottom: 15px;
+  text-align: center;
 }
 
 .hero-profile-save-button {
