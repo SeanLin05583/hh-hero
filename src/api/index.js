@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const request = () => {
   const baseRequest = axios.create();
-  baseRequest.defaults.baseURL = 'http://hahow-recruit.herokuapp.com';
+  baseRequest.defaults.baseURL = 'https://hahow-recruit.herokuapp.com';
 
   return baseRequest;
 }
