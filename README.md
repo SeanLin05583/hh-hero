@@ -68,9 +68,9 @@ online demo : https://seanlin05583.github.io/seanlin-profile/hh-hero
      > 解法：改實作 React context 與 custom hook，直接在 HeroCard 從 state 中得到 selectedHeroId，就不需透過 HeroList 傳遞 props 造成 re-render
      > 
      > [2bcd236](https://github.com/SeanLin05583/hh-hero/commit/2bcd2362ecb6857dc9d7e0f7d6fe310ad39ecb0e)
- - 不希望 User 進入到 除了 /heroes 以外的 route
-     > - app.js 加上 <Redirect from="*" to="/heroes" />
+ - 不希望 User 進入除了 /heroes 以外的 routing
+     > - app.js 加上 `<Redirect from="*" to="/heroes" />`
      > - HeroProfile 撈取 hero profile 時，在該 hero id 不存在於 hero list 中時，跳轉 '/heroes'
      
- - 使用 react-router ，在 /heroes/:id 頁面時重新整理會吃不到 /heroes/:id/bundle.js， 
+ - 使用 react-router，在 /heroes/:id 頁面時重新整理會吃不到 /heroes/:id/bundle.js， 
      >  html 設定 `<base href="/" />` 指定全站的 href base 為 root，即會吃到 /bundle.js
