@@ -19,27 +19,29 @@ online demo : https://seanlin05583.github.io/seanlin-profile/hh-hero
 ## 架構    
 ![](https://paper-attachments.dropbox.com/s_27A841566E6280773698BEBEDABFF861258818FC58B30EA164F280F2811B3248_1575262169924_+2019-12-02+12.43.47.png)
 
-- 不使用 Redux，用 React context hook 
-- 不使用 CSS framework，諸如 bootstrap、bulma 等固然快速好用，但很難應付客製化的需求，不如自己寫。
+- 不使用 Redux，用 React context hook。
+- 不使用 CSS framework，諸如 bootstrap、bulma 等固然快速好用，但很難應付客製化的需求。
 - 能用變數命名理解的 code 不寫註解，除非某些特定解法是 google 來的，會附上連結
-    ├ /src
-        ├ /components
-            ├ /common：放置共用型 Component
-                ├ /CircleSpinner：Loading 旋轉 Component
-                ├ /NumberEditor：Number 加減 Component
-            ├ /pages：放置各 route 對應的頁面(此專案只有 HeroPage)
-                ├ /HeroPage：hero 頁
-                    ├ /HeroList：呈現 Hero 列表
-                        ├ HeroList
-                        ├ HeroCard：Hero 小卡
-                    ├ /HeroProfile
-                        ├ HeroProfile
-                        ├ HeroProfileEditor：編輯 Hero 屬性，並有按鈕可以送出
-            ├ App.jsx：主檔案
-            ├ normalize.css
-            ├ style.css：global CSS
-        ├ /api：呼叫的 API 集中於此
-        ├ /state：React Context Provider 與 useStateValue custom hook
+```
+├ /src
+    ├ /components
+        ├ /common：放置共用型 Component
+            ├ /CircleSpinner：Loading 旋轉 Component
+            ├ /NumberEditor：Number 加減 Component
+        ├ /pages：放置各 route 對應的頁面(此專案只有 HeroPage)
+            ├ /HeroPage：hero 頁
+                ├ /HeroList：呈現 Hero 列表
+                    ├ HeroList
+                    ├ HeroCard：Hero 小卡
+                ├ /HeroProfile
+                    ├ HeroProfile
+                    ├ HeroProfileEditor：編輯 Hero 屬性，並有按鈕可以送出
+        ├ App.jsx：主檔案
+        ├ normalize.css
+        ├ style.css：global CSS
+    ├ /api：呼叫的 API 集中於此
+    ├ /state：React Context Provider 與 useStateValue custom hook
+```
 
 ## 套件
 ### cdn
